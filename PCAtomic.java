@@ -17,8 +17,8 @@ public class PCAtomic {
 
         final AtomicInteger liveProducers = new AtomicInteger();
 
-        Thread[] producerThread = new Thread[5];
-        Thread[] consumerThread = new Thread[2];
+        Thread[] producerThread = new Thread[2];
+        Thread[] consumerThread = new Thread[5];
 
         for (int i = 0; i < producerThread.length; i++) {
             producerThread[i] = new Thread(new Runnable() {
@@ -47,7 +47,7 @@ public class PCAtomic {
                 @Override
                 public void run() {
                     try {
-                        while (liveProducers.get() != 0 || buffer.peek() != null){
+                        while (liveProducers.get() != 0 || buffer.peek() != null) {
                             Integer nextConsume = buffer.poll(1, TimeUnit.SECONDS);
                             if (nextConsume != null) {
                                 System.out.println(Thread.currentThread().getName() + " consumed Item-" + nextConsume);
