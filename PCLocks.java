@@ -21,8 +21,6 @@ public class PCLocks {
         Thread[] producerThread = new Thread[2];
         Thread[] consumerThread = new Thread[5];
 
-        Thread mainThread = Thread.currentThread();
-
         for (int i = 0; i < producerThread.length; i++) {
             producerThread[i] = new Thread(new Runnable() {
                 @Override
